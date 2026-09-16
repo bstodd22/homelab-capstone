@@ -1,98 +1,81 @@
 # Project Roadmap
 
----
+This roadmap separates confirmed accomplishments from future work.
+Only work actually performed is marked complete.
 
-## Phase 1 — On-Premises Infrastructure ✅ Complete
+## Phase 1 — Core On-Premises Infrastructure
+Status: Core deployment complete
 
-- Deploy Proxmox hypervisor
-- Deploy pfSense firewall/router as VM
-- Configure VLAN segmentation (VLAN 10, VLAN 30)
-- Configure inter-VLAN routing and firewall rules
-- Deploy Windows Server 2022 as Domain Controller
-- Configure Active Directory Domain Services
-- Join Windows 11 endpoint to domain
-- Create domain users, service accounts, and admin accounts
-- Deploy Wazuh SIEM on Ubuntu Server (Docker)
-- Onboard Windows Server and Windows 11 agents to Wazuh
-- Simulate failed authentication attacks and investigate in Wazuh
-- Configure remote access via Twingate
-- Deploy internal web application (Node.js helpdesk portal)
+Completed:
+- [x] Deploy Proxmox.
+- [x] Deploy Windows Server and Linux virtual machines.
+- [x] Configure pfSense firewall rules.
+- [x] Configure VLAN segmentation.
+- [x] Deploy and configure Wazuh.
+- [x] Configure Windows Server and Linux log forwarding to Wazuh.
 
----
+## Phase 2 — Hybrid Cloud Log Collection
+Status: Initial integration complete
 
-## Phase 2 — Cloud Security Integration ✅ Complete
+Completed:
+- [x] Extend the environment to Azure through Azure Arc.
+- [x] Configure Windows Security Event forwarding to Microsoft Sentinel.
+- [x] Establish incoming Windows security logs in Sentinel.
+- [x] Integrate Sentinel with the Microsoft Defender portal.
 
-- Create Azure tenant (Azure for Students)
-- Configure Microsoft Entra ID with users, groups, and RBAC roles
-- Deploy Log Analytics Workspace in Azure
-- Deploy Microsoft Sentinel as cloud-native SIEM
-- Install Windows Security Events content hub solution
-- Onboard Windows Server 2022 to Azure Arc
-- Onboard Windows 11 Pro to Azure Arc
-- Create Data Collection Rule via Azure Monitor Agent
-- Validate log ingestion via KQL in Defender Advanced Hunting
-- Connect Sentinel workspace to Microsoft Defender XDR portal
+## Phase 3 — Log Analysis and Detection Engineering
+Status: Planned — not yet performed
 
----
+- [ ] Learn KQL and query collected security events.
+- [ ] Document ingestion validation for each endpoint.
+- [ ] Examine successful and failed authentication events.
+- [ ] Create and test a scheduled Sentinel analytics rule.
+- [ ] Explore custom Wazuh detection rules.
+- [ ] Evaluate Sysmon and PowerShell script block logging.
+- [ ] Build a basic monitoring workbook.
+- [ ] Document detection logic, test results, and limitations.
+- [ ] Map tested detections to relevant MITRE ATT&CK techniques.
 
-## Phase 3 — Detection Engineering 🔄 In Progress
+## Phase 4 — Controlled Attack Simulation and Investigation
+Status: Planned — not yet performed
 
-- Write custom KQL detection rules in Microsoft Sentinel
-- Build scheduled analytics rules for brute force detection
-- Deploy Sysmon on Windows endpoints for enhanced telemetry
-- Enable PowerShell script block logging
-- Simulate Kerberoasting attack and validate detection
-- Build threat hunting queries in Sentinel
-- Create Sentinel Workbook dashboards for SOC visibility
-- Write custom Wazuh detection rules
-- Map all detections to MITRE ATT&CK framework
+All simulations will be limited to owned or explicitly authorized
+lab systems.
 
----
+- [ ] Generate controlled failed-authentication activity.
+- [ ] Examine resulting logs and alerts.
+- [ ] Document a lab investigation and response recommendations.
+- [ ] Explore Active Directory attack paths using BloodHound.
+- [ ] Practice controlled lateral-movement and privilege-escalation scenarios.
+- [ ] Validate network segmentation during controlled testing.
+- [ ] Document observed behavior and detection gaps.
 
-## Phase 4 — Attack Simulation ⬜ Planned
+## Phase 5 — Cloud Security Testing
+Status: Future learning goals
 
-- Simulate lateral movement across VLANs
-- Simulate privilege escalation via AD misconfigurations
-- Run BloodHound for Active Directory attack path analysis
-- Simulate PsExec-based remote execution
-- Test pass-the-hash and pass-the-ticket techniques
-- Validate firewall segmentation under active attack scenarios
-- Document attacker TTPs and blue team response for each simulation
+- [ ] Establish an isolated AWS lab with cost controls.
+- [ ] Evaluate CloudGoat for authorized cloud security exercises.
+- [ ] Practice identifying IAM and storage misconfigurations.
+- [ ] Explore CloudTrail and GuardDuty telemetry.
+- [ ] Compare cloud and on-premises security visibility.
 
----
+## Phase 6 — Lab Hardening and Response Documentation
+Status: Future learning goals
 
-## Phase 5 — Cloud Penetration Testing ⬜ Planned
+- [ ] Review and document lab Group Policy settings.
+- [ ] Configure and test account lockout policies.
+- [ ] Review RDP restrictions and Network Level Authentication.
+- [ ] Evaluate Conditional Access, subject to licensing.
+- [ ] Perform authorized vulnerability scanning.
+- [ ] Draft and test lab incident response playbooks.
 
-- Set up AWS account for cloud attack lab
-- Deploy CloudGoat (vulnerable-by-design AWS environment)
-- Practice IAM privilege escalation scenarios
-- Practice S3 bucket misconfiguration exploitation
-- Practice cloud credential abuse techniques
-- Detect cloud attacks using AWS CloudTrail and GuardDuty
-- Compare on-prem vs cloud attack surfaces
+- [ ] Assess selected configurations against CIS Benchmarks.
 
----
+## Documentation Standards
 
-## Phase 6 — Hardening and Compliance ⬜ Planned
-
-- Implement Group Policy hardening on Active Directory
-- Configure account lockout policies
-- Harden RDP access (NLA, restricted admin mode)
-- Implement Azure Conditional Access policies (requires Entra ID P1)
-- Harden web application (authentication, IDOR, upload controls)
-- Conduct vulnerability scanning with OpenVAS or Nessus Essentials
-- Write incident response playbooks
-- Document security controls against CIS Benchmarks
-
----
-
-## Certifications Aligned to This Project
-
-| Certification     | Relevant Phases         |
-|-------------------|-------------------------|
-| CompTIA CySA+     | Phase 1, 2, 3, 4        |
-| CompTIA PenTest+  | Phase 4, 5              |
-| ISC2 SSCP         | Phase 1, 2, 3, 6        |
-| ISC2 CCSP         | Phase 2, 5              |
-| AZ-500            | Phase 2, 3              |
-| LPI Linux Essentials | Phase 1              |
+- Mark tasks complete only after performing them.
+- Separate setup instructions from evidence of completed work.
+- Label example queries as untested until executed.
+- Do not equate collected events with validated attack detection.
+- Publish sanitized evidence where practical.
+- Keep resume claims aligned with completed project work.
